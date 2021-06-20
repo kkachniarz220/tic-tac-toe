@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #424242;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  z-index: 2;
+}
+
+.drawer {
+  min-width: 300px;
+}
+
+.active-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  background-color: #69F0AE;
+  margin-right: 7px;
+}

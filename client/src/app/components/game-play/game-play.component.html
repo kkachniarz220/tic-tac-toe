@@ -1,0 +1,57 @@
+<div *ngIf="gameDetails$ | async as gameDetails" class="d-flex align-items-center flex-column w-100 h-100">
+  <div class="d-flex w-100 align-items-center">
+    <button mat-button (click)="goTo('game/list')">
+      <mat-icon>arrow_back</mat-icon>
+      Back to game list
+    </button>
+  </div>
+
+  <h1
+    *ngIf="gameDetails.wonPlayerId === userId && gameDetails.status === 'finished'; else gameEndedTmpl"
+    class="fw-bold text-success"
+  >
+    You won!
+  </h1>
+
+  <div>
+    <div class="position-relative">
+      <div class="board col-12 col-10">
+        <div
+          *ngFor="let field of gameDetails.board | keyvalue"
+          (click)="doMove(field.key)"
+          [id]="'field-' + field.key"
+          [class.blinking]="doBlink(field.key)"
+          class="field"
+        >
+          <img *ngIf="field.value" [src]="'assets/' + field.value + '.svg'">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="text-center" style="color: #797979">Your {{ !isMyTurn ? 'opponent`s' : '' }} turn</div>
+    <div class="d-flex align-items-center mb-3">
+      You are playing
+      <img [src]="'assets/' + mySymbol + '.svg'" class="ml-2" style="width: 20px; height: 20px; margin: 0 7px">
+      symbol
+    </div>
+
+    <div class="mt-3">
+      <h1 class="mb-0">Moves history</h1>
+      <mat-list role="list" class="moves-history">
+        <mat-list-item *ngFor="let history of gameDetails.moves; let i = index" class="border-bottom" role="listitem">
+          <div class="d-flex">
+            <div style="margin-right: 15px">{{ i + 1 }}.</div>
+            <div style="margin-right: 10px">Position: {{ history.position }}</div>
+            <div>Symbol: {{ history.symbol }}</div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+
+  <ng-template #gameEndedTmpl>
+    <h1 *ngIf="gameDetails.status === 'draw'" class="fw-bold text-secondary">Draw!</h1>
+    <h1 *ngIf="gameDetails.status === 'finished'" class="text-danger fw-bold">You lost!</h1>
+  </ng-template>
+</div>

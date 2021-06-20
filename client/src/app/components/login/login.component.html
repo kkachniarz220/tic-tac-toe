@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-center">
+  <mat-card class="login-card">
+    <mat-card-content>
+      <h1 class="text-center">Please enter your nickname</h1>
+      <form (submit)="submit()">
+        <mat-form-field class="w-100">
+          <mat-label>Nickname</mat-label>
+          <input matInput [formControl]="nicknameFormControl" placeholder="nickname">
+          <mat-error *ngIf="nicknameFormControl.hasError('required')">
+            Nickname is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <div class="d-flex justify-content-center w-100 mt-4">
+          <button type="submit" mat-raised-button color="primary" class="col-md-6 col-12">Log in</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

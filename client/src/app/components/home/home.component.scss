@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  min-width: 100%;
+}
+
+.drawer {
+  min-width: 300px;
+}
+
+.active-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  background-color: #69F0AE;
+  margin-right: 7px;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #ffffff0d;
+}
+
+.mat-row {
+  cursor: pointer;
+}
